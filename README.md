@@ -1,4 +1,4 @@
-# AI Assisted SME Evaluation Platform
+# RAG Evaluation Platform (Powered by Agentic AI)
 
 A comprehensive **full-stack RAG Evaluation Platform** that employs a sophisticated multi-agent AI system to evaluate AI responses across critical quality metrics. This platform combines a modern React frontend with a robust FastAPI backend to provide real-time evaluation capabilities for RAG (Retrieval-Augmented Generation) applications.
 
