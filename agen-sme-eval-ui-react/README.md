@@ -1,10 +1,8 @@
-# AI SME Evaluation Platform - React Frontend
-
-A modern, eye-catching React frontend for the AI Assisted SME Evaluation Platform, inspired by NVIDIA's design patterns.
+# RAG Evaluation Platform Powered by Agentic AI - React Frontend
 
 ## Features
 
-- **Modern UI Design**: NVIDIA-inspired dark theme with green accent colors
+- **Modern UI Design**: Dark theme with green accent colors
 - **Responsive Layout**: Optimized for desktop, tablet, and mobile devices
 - **Real-time System Status**: Live monitoring of backend services and agents
 - **Interactive Evaluation Form**: Multi-metric selection with validation
