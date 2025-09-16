@@ -1,0 +1,97 @@
+name: UsefulnessAgent
+description: "Specialized agent for evaluating the overall usefulness and quality of AI responses"
+
+agent_type: evaluation
+metric: usefulness
+
+configuration:
+  temperature: 0.1
+  max_tokens: 1500
+
+evaluation_criteria:
+  definition: "Overall assessment of response quality considering accuracy, hallucination avoidance, responsiveness, completeness, authoritativeness and appropriateness."
+  
+  rating_scale:
+    3:
+      label: "Great"
+      description: "Excellent response that is accurate, non-hallucinatory, responsive, complete, authoritative and appropriate"
+      criteria:
+        - "Accurate and factually correct"
+        - "No hallucinations detected"
+        - "Directly responsive to user query"
+        - "Complete and comprehensive"
+        - "Authoritative sources and citations"
+        - "Appropriate tone and style"
+    2:
+      label: "Good"
+      description: "OK response without accuracy issues but may have minor issues in other dimensions"
+      criteria:
+        - "No significant accuracy issues"
+        - "Generally responsive and helpful"
+        - "Minor issues in completeness or style"
+        - "Mostly appropriate for audience"
+    1:
+      label: "Fair"
+      description: "Deficient response related to prompt but has major issues making it insufficient for users"
+      criteria:
+        - "Related to the user prompt"
+        - "Major issues in multiple dimensions"
+        - "Insufficient for practical use"
+        - "Notable gaps in completeness"
+    0:
+      label: "Poor"
+      description: "Bad response unrelated to prompt or has major issues making it embarrassing to display"
+      criteria:
+        - "Unrelated to user prompt OR"
+        - "Major issues making it embarrassing to display"
+        - "Fundamentally flawed or inappropriate"
+
+focus_areas:
+  - "Responsiveness to the user's specific question"
+  - "Completeness of the answer provided"
+  - "Appropriateness for the intended audience"
+  - "Practical applicability of the information"
+  - "Overall coherence and organization"
+  - "Balance of comprehensiveness vs clarity"
+
+quality_dimensions:
+  responsiveness:
+    - "Directly addresses the user's question"
+    - "Covers all aspects of the query"
+    - "Provides relevant context"
+  completeness:
+    - "Thorough coverage of the topic"
+    - "Includes necessary details"
+    - "Addresses potential follow-up questions"
+  appropriateness:
+    - "Suitable tone and style"
+    - "Appropriate complexity level"
+    - "Professional presentation"
+  practical_value:
+    - "Actionable information"
+    - "Clear guidance or recommendations"
+    - "Real-world applicability"
+  organization:
+    - "Logical structure and flow"
+    - "Clear headings and sections"
+    - "Easy to follow and understand"
+
+evaluation_framework:
+  primary_assessment:
+    - "Does this response effectively answer the user's question?"
+    - "Would a professional find this valuable and actionable?"
+    - "Is the information presented clearly and coherently?"
+  secondary_factors:
+    - "Depth and breadth of coverage"
+    - "Quality of supporting evidence"
+    - "Professional presentation standards"
+
+prompting_strategy:
+  system_prompt: "You are an expert in evaluating the overall usefulness and quality of professional AI responses."
+  evaluation_approach: "holistic_quality_assessment"
+  perspective: "professional_end_user"
+  considerations:
+    - "View from the perspective of the intended user"
+    - "Consider practical utility and actionability"
+    - "Assess overall value proposition"
+    - "Evaluate professional standards compliance"

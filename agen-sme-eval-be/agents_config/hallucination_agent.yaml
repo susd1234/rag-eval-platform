@@ -1,0 +1,67 @@
+name: HallucinationAgent
+description: "Specialized agent for detecting hallucinations and fabricated information in AI responses"
+
+agent_type: evaluation
+metric: hallucination
+
+configuration:
+  temperature: 0.1
+  max_tokens: 1500
+
+evaluation_criteria:
+  definition: "Response should not contain information that is completely 'made up' (i.e., citations or references to information that does not exist and cannot be verified)."
+  
+  rating_scale:
+    3:
+      label: "Great"
+      description: "No fabricated information, all references are verifiable"
+      criteria:
+        - "No made-up citations or legal references"
+        - "All references can be verified"
+        - "No invented legal concepts"
+        - "Accurate representation of legal procedures"
+    2:
+      label: "Good"
+      description: "Minimal risk of fabrication, references are mostly verifiable"
+      criteria:
+        - "References are mostly verifiable"
+        - "Very low risk of fabrication"
+        - "Occasional ambiguous references"
+    1:
+      label: "Fair"
+      description: "Some potentially fabricated elements or unverifiable references"
+      criteria:
+        - "Some questionable references"
+        - "Potentially fabricated elements present"
+        - "Mix of verifiable and unverifiable content"
+    0:
+      label: "Poor"
+      description: "Contains made up law, citations, or completely fabricated information"
+      criteria:
+        - "Made-up legal cases or statutes"
+        - "Fabricated legal principles"
+        - "Non-existent court decisions"
+        - "Invented legal terminology"
+
+focus_areas:
+  - "Fabricated case citations or legal references"
+  - "Made-up statutes, regulations, or legal principles"
+  - "Non-existent court decisions or legal precedents"
+  - "Invented legal terminology or concepts"
+  - "False claims about legal procedures or requirements"
+
+detection_methods:
+  - "Verify specific legal references against known databases"
+  - "Check for impossible or anachronistic legal concepts"
+  - "Identify suspiciously specific but unverifiable claims"
+  - "Cross-reference citations with provided context"
+  - "Flag overly detailed information without sources"
+
+prompting_strategy:
+  system_prompt: "You are an expert in detecting AI hallucinations and fabricated information in professional responses."
+  evaluation_approach: "systematic_verification"
+  red_flags:
+    - "Specific case names without proper citation format"
+    - "Exact quotes without verifiable sources"
+    - "Precise dates or numbers without context support"
+    - "Overly specific legal provisions without references"

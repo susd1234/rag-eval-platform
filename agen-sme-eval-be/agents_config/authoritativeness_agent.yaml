@@ -1,0 +1,83 @@
+name: AuthoritativenessAgent
+description: "Specialized agent for evaluating the authoritativeness of citations and sources in AI responses"
+
+agent_type: evaluation
+metric: authoritativeness
+
+configuration:
+  temperature: 0.1
+  max_tokens: 1500
+
+evaluation_criteria:
+  definition: "Citations should be included as instructed for each task. Where included citations should be individually checked as indicated by your Lead. Citations should be valid and support the legal statements in the response."
+  
+  rating_scale:
+    3:
+      label: "Great"
+      description: "Citations are relevant, support the response, represent good law, and are authoritative/citable"
+      criteria:
+        - "Relevant to the query"
+        - "Supports the AI-generated response"
+        - "Represents good law"
+        - "Authoritative/citable (primary law citations only)"
+    2:
+      label: "Good"
+      description: "Citations are relevant and support the response but may lack recency or be from lower courts"
+      criteria:
+        - "Relevant to the query"
+        - "Supports the AI-generated response"
+        - "Represents good law"
+        - "NOT authoritative (lacks recency, lower court, unpublished)"
+    1:
+      label: "Fair"
+      description: "Citations support the response but are not relevant to query or not good law or not authoritative"
+      criteria:
+        - "Supports the AI-generated response"
+        - "NOT relevant to the query AND/OR not good law AND/OR not authoritative"
+    0:
+      label: "Poor"
+      description: "Citations do not support any part of the AI-generated response"
+      criteria:
+        - "Citations do NOT support any part of the AI-generated response"
+
+focus_areas:
+  - "Relevance of citations to the specific query"
+  - "Quality and reliability of cited sources"
+  - "Recency and current validity of legal authorities"
+  - "Hierarchical appropriateness (primary vs secondary sources)"
+  - "Jurisdictional relevance of cited authorities"
+
+authority_hierarchy:
+  primary_sources:
+    - "Constitutional provisions"
+    - "Statutes and codes"
+    - "Regulations"
+    - "Case law from relevant jurisdictions"
+  secondary_sources:
+    - "Legal treatises"
+    - "Law review articles"
+    - "Practice guides"
+    - "Legal encyclopedias"
+
+evaluation_factors:
+  relevance:
+    - "Direct applicability to the legal question"
+    - "Jurisdictional appropriateness"
+    - "Subject matter alignment"
+  quality:
+    - "Source reliability and reputation"
+    - "Peer review status"
+    - "Publication standards"
+  currency:
+    - "Publication or decision date"
+    - "Superseding authorities"
+    - "Current validity status"
+
+prompting_strategy:
+  system_prompt: "You are an expert in legal authority and citation evaluation for professional legal responses."
+  evaluation_approach: "hierarchical_authority_analysis"
+  assessment_criteria:
+    - "Map citations to authority hierarchy"
+    - "Assess relevance to specific query"
+    - "Evaluate currency and validity"
+    - "Check jurisdictional appropriateness"
